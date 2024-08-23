@@ -1,0 +1,16 @@
+version: '2'
+services:
+  euro-tickets-app:
+    image: myapp
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://euro-tickets-postgresql:5432/euro_tickets_db
+      - JHIPSTER_SLEEP=30
+    ports:
+      - "8081:8080"
+  euro-tickets-postgresql:
+    extends:
+      file: postgresql.yml
+      service: euro-tickets-postgresql
